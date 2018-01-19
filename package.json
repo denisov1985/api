@@ -15,11 +15,16 @@
   "dependencies": {
     "babel-preset-stage-1": "^6.24.1",
     "html-webpack-plugin": "^2.30.1",
+    "immutable": "^3.8.2",
     "install": "^0.10.2",
-    "material-ui": "^0.20.0",
+    "material-components-web": "^0.28.0",
+    "material-ui": "^1.0.0-beta.29",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-on-rails": "^10.0.2",
-    "react-router-dom": "^4.2.2"
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   }
 }

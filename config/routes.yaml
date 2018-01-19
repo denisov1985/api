@@ -6,3 +6,7 @@ api:
     resource: '.'
     type: 'api_platform'
     prefix: '/api'
+
+controllers:
+    resource: ../../src/Controller/
+    type: annotation

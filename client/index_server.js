@@ -1,7 +1,12 @@
+/**
+ * Entry point of application
+ * @author Dmytro Denysov dmytro@denysov.net
+ */
 import React from 'react';
-import ReactDOM from 'react-dom';
 import ReactOnRails from 'react-on-rails';
-import App from './components/App.jsx';
-import { BrowserRouter } from 'react-router-dom'
-ReactOnRails.register({ App });
+import Root from './containers/Root';
+import configureStore from './store/AppStore'
+
+ReactOnRails.registerStore({ configureStore });
+ReactOnRails.register({ Root });
 

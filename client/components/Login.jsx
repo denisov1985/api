@@ -1,23 +1,43 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-
-
+import TextField from '../material/TextField/index.jsx';
 
 class Login extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: '',
+        }
+    }
+
     render() {
-        const muiTheme = getMuiTheme({
-            appBar: {
-                height: 50,
-            },
-            userAgent: 'all'
-        });
+
+        console.log(this.props.data);
+        let button = (<button onClick={() => {this.props.onLogin(this.state)}} className="btn btn-rose">Login<div className="ripple-container"></div></button>);
+        if (this.props.data.isFetching) {
+            button = <button disabled="disabled" className="btn btn-rose">Login<div className="ripple-container"></div></button>;
+        }
+
+        let emailHasError = false;
+        let passwordHasError = false;
+        let passwordMessage = '';
+        let emailMessage = '';
+        if (typeof this.props.data.error !== 'undefined') {
+            const error = this.props.data.error;
+            if (error.field === 'email') {
+                emailHasError = true;
+                emailMessage = error.message;
+            }
+            if (error.field === 'password') {
+                passwordHasError = true;
+                passwordMessage = error.message;
+            }
+        }
 
         return (
-            <MuiThemeProvider muiTheme={muiTheme}>
+
             <div>
                 <nav className="navbar navbar-primary navbar-transparent navbar-absolute">
                     <div className="container">
@@ -66,11 +86,12 @@ class Login extends React.Component {
                                                         </a>
                                                         <a href="#eugen" className="btn btn-just-icon btn-simple">
                                                             <i className="fa fa-google-plus"/>
-                                                        </a>
+                                                         </a>
                                                     </div>
                                                 </div>
-                                                <p className="category text-center">
-                                                    Or Be Classical
+                                                <p className="category text-center" style={{color: 'red'}}>
+                                                    {emailMessage}
+                                                    {passwordMessage}
                                                 </p>
                                                 <div className="card-content">
 
@@ -78,29 +99,19 @@ class Login extends React.Component {
                   <span className="input-group-addon">
                     <i className="material-icons">email</i>
                   </span>
-                                                        <div className="form-group label-floating is-empty">
-                                                            <TextField
-                                                                id={'email'}
-                                                                className={'up_10px'}
-                                                                floatingLabelText="Email"
-                                                            />
-                                                            <span className="material-input"/></div>
+                                                        <TextField name="email" parent={this}  hasError={emailHasError} label="Email" />
+
                                                     </div>
                                                     <div className="input-group">
                   <span className="input-group-addon">
                     <i className="material-icons">lock_outline</i>
                   </span>
-                                                        <div className="form-group label-floating is-empty">
-                                                            <TextField
-                                                                className={'up_10px'}
-                                                                id={'password'}
-                                                                floatingLabelText="Password"
-                                                            />
-                                                            <span className="material-input"/></div>
+                                                        <TextField  name="password" parent={this} hasError={passwordHasError} label="Password" type={'password'} />
+
                                                     </div>
                                                 </div>
                                                 <div className="footer text-center">
-                                                    <RaisedButton label="Lets go" />
+                                                    {button}
                                                 </div>
                                             </div>
                                         </form>
@@ -140,11 +151,19 @@ class Login extends React.Component {
                                 </p>
                             </div>
                         </footer>
-                        <div className="full-page-background" style={{backgroundImage: 'url(../../img/login.jpeg)'}}/>
+                        <div className="full-page-background" style={{backgroundImage: 'url(../../img/lock.jpeg)'}}/>
                     </div>
                 </div>
             </div>
-            </MuiThemeProvider>);
+            );
     }
 }
+
+Login.defaultProps = {
+    data: {
+        isFetching: false,
+        error: {}
+    }
+};
+
 export default Login;

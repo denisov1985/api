@@ -14,7 +14,7 @@ class Register extends React.Component {
                                 <span className="icon-bar"/>
                                 <span className="icon-bar"/>
                             </button>
-                            <a className="navbar-brand" href=" ../dashboard.html ">REGISTER</a>
+                            <a className="navbar-brand" href="# ">Welcome</a>
                         </div>
                         <div className="collapse navbar-collapse">
                             <ul className="nav navbar-nav navbar-right">
@@ -162,7 +162,7 @@ class Register extends React.Component {
                                 </p>
                             </div>
                         </footer>
-                        <div className="full-page-background" style={{backgroundImage: 'url(../../img/login.jpeg)'}}/>
+                        <div className="full-page-background" style={{backgroundImage: 'url(../../img/lock.jpeg)'}}/>
                     </div>
                 </div>
             </div>);

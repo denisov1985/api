@@ -14,7 +14,8 @@
 
     </head>
     <body class='off-canvas-sidebar' >
-        {{ react_component('App', {'props': {ololo: 'trololo'}}) }}
+        {{ redux_store('configureStore', {ololo: 'lalala'}) }}
+        {{ react_component('Root') }}
 
         {% block body %}{% endblock %}
         {% block javascripts %}
